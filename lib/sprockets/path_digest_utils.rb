@@ -18,7 +18,7 @@ module Sprockets
         digest_class.digest(self.entries(path).join(','))
       elsif stat.file?
         # If its a file, digest the contents
-        digest_class.file(path.to_s).digest
+        cached_version_digest.file(path.to_s).digest
       else
         raise TypeError, "stat was not a directory or file: #{stat.ftype}"
       end

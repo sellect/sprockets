@@ -24,6 +24,17 @@ module Sprockets
 
     # Get persistent cache store
     attr_reader :cache
+    attr_reader :cached_version_digest
+
+    attr_reader :version
+
+    # Assign an environment version.
+    #
+    #     environment.version = '2.0'
+    #
+    def version=(version)
+      @version = version
+    end
 
     # Set persistent cache store
     #
@@ -39,6 +50,16 @@ module Sprockets
       raise NotImplementedError
     end
     alias_method :index, :cached
+
+    def cached_version_digest
+      # Compute the initial digest using the implementation class. The
+      # Sprockets release version and custom environment version are
+      # mixed in. So any new releases will affect all your assets.
+      @cached_version_digest ||= digest_class.new.update(version.to_s)
+
+      # Returned a dupped copy so the caller can safely mutate it with `.update`
+      @cached_version_digest.dup
+    end
 
     # Internal: Compute digest for path.
     #
