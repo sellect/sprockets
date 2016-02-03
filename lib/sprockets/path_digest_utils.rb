@@ -1,10 +1,12 @@
 require 'sprockets/digest_utils'
 require 'sprockets/path_utils'
+require 'sprockets/cached_digest_utils'
 
 module Sprockets
   # Internal: Crossover of path and digest utilities functions.
   module PathDigestUtils
     include DigestUtils, PathUtils
+    include CachedDigestUtils
 
     # Internal: Compute digest for file stat.
     #
@@ -15,7 +17,7 @@ module Sprockets
     def stat_digest(path, stat)
       if stat.directory?
         # If its a directive, digest the list of filenames
-        digest_class.digest(self.entries(path).join(','))
+        cached_version_digest.digest(self.entries(path).join(','))
       elsif stat.file?
         # If its a file, digest the contents
         cached_version_digest.file(path.to_s).digest

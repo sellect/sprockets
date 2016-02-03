@@ -1,5 +1,6 @@
 require 'sprockets/uri_utils'
 require 'sprockets/uri_tar'
+require 'sprockets/cached_digest_utils'
 
 module Sprockets
   # Internal: Used to parse and store the URI to an unloaded asset
