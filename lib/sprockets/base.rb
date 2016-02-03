@@ -16,7 +16,7 @@ require 'sprockets/uri_tar'
 module Sprockets
   # `Base` class for `Environment` and `Cached`.
   class Base
-    include PathUtils, PathDependencyUtils, PathDigestUtils, DigestUtils, CachedDigestUtils
+    include PathUtils, PathDependencyUtils, PathDigestUtils, DigestUtils
     include Configuration
     include Server
     include Resolve, Loader

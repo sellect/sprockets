@@ -1,12 +1,10 @@
 require 'sprockets/digest_utils'
 require 'sprockets/path_utils'
-require 'sprockets/cached_digest_utils'
 
 module Sprockets
   # Internal: Crossover of path and digest utilities functions.
   module PathDigestUtils
     include DigestUtils, PathUtils
-    include CachedDigestUtils
 
     # Internal: Compute digest for file stat.
     #
