@@ -40,8 +40,6 @@ module Sprockets
     end
     alias_method :index, :cached
 
-
-
     # Internal: Compute digest for path.
     #
     # path - String filename or directory path.
