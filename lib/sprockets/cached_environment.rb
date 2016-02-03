@@ -15,7 +15,9 @@ module Sprockets
       initialize_configuration(environment)
 
       @cache   = environment.cache
-      @version = environment.version
+
+      # @version = environment.version
+
       @cached_version_digest = environment.cached_version_digest
 
       @stats   = Hash.new { |h, k| h[k] = _stat(k) }
